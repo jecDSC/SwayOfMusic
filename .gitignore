@@ -1,0 +1,9 @@
+# All notebooks
+*.ipynb
+
+# Folders
+data
+
+# Files
+proposal.md
+explore.ipynb
