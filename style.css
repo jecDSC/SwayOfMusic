@@ -1,0 +1,20 @@
+/* div#selectors {
+  display: flex;
+} */
+
+label.dropdown-labels {
+  margin: 10px;
+}
+
+.gridlines {
+  opacity: 20%;
+}
+
+svg#main {
+  width: 200;
+  height: 200;
+}
+
+#person {
+  transition: 100ms;
+}

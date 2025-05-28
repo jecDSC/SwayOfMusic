@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="vis.js" type="module"></script>
+  </head>
+  <body>
+    <div id="selectors">
+      <label class="dropdown-labels">
+        Subject:
+        <select id="Subject" class="dropdown">
+          <option value="s3">S3</option>
+          <option value="s5">S5</option>
+          <option value="s10">S10</option>
+          <option value="s11">S11</option>
+          <option value="s15">S15</option>
+          <option value="s16">S16</option>
+          <option value="s17">S17</option>
+          <option value="s22">S22</option>
+          <option value="s23">S23</option>
+          <option value="s27">S27</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Music Settings:
+        <select id="Music" class="dropdown">
+          <option value="normal">Normal</option>
+          <option value="loud">+0.1 Hz</option>
+          <option value="louder">+0.25 Hz</option>
+          <option value="off">Off</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Environment Moving:
+        <select id="Env" class="dropdown">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Eyes Open:
+        <select id="Eyes" class="dropdown">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </label>
+
+      <button id="Change" type="button">Change Settings</button>
+    </div>
+
+    <div id="vis"></div>
+  </body>
+</html>
