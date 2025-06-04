@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Final Project DSC106</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="global.css" />
+    <script src="vis.js" type="module"></script>
+  </head>
+  <body>
+    <h1>The Sway of music</h1>
+    <div id="selectors">
+      <label class="dropdown-labels">
+        Subject:
+        <select id="Subject" class="dropdown">
+          <option value="s3">S3</option>
+          <option value="s5">S5</option>
+          <option value="s10">S10</option>
+          <option value="s11">S11</option>
+          <option value="s15">S15</option>
+          <option value="s16">S16</option>
+          <option value="s17">S17</option>
+          <option value="s22">S22</option>
+          <option value="s23">S23</option>
+          <option value="s27">S27</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Music Settings:
+        <select id="Music" class="dropdown">
+          <option value="normal">Normal</option>
+          <option value="loud">+0.1 Hz</option>
+          <option value="louder">+0.25 Hz</option>
+          <option value="off">Off</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Environment Moving:
+        <select id="Env" class="dropdown">
+          <option value="off">Off</option>
+          <option value="on">On</option>
+        </select>
+      </label>
+
+      <label class="dropdown-labels">
+        Eyes Open:
+        <select id="Eyes" class="dropdown">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </label>
+
+      <button id="Change" type="button">Change Settings</button>
+    </div>
+
+    <div id="vis"></div>
+
+    <p>
+      1. We have done a few things, mainly pertaining to cleaning the dataset.
+      For instance, the dataset we picked, which contained the swaying data from
+      participants under different conditions, was too big to push onto github,
+      so we removed many of the participants since the dataset was too large.
+      Additionally, the rows were all 1000th of a second, so we condensed the
+      data to also clean and shorten the data. For the visualizations, we have
+      decided to come up with one main visualization and a few supporting to
+      showcase the data and the overall message of our visualization. Our
+      visualization shows how a participant moves in their body in the VR
+      environment
+    </p>
+    <p>
+      The most challenging part of the project will be coming up with a cohesive
+      design for the website to showcase our narrative. We want to showcase the
+      sway of people to show the effect of music and environment on the sway of
+      participants, but currently we are not too sure on how to effectively
+      communicate this idea. Additionally, trying to come up with multiple
+      interactive visualizations to fully showcase the data of people swaying is
+      another challenge, since we are limited to showing the swaying data, which
+      only has data on people swaying and nothing more, so it is hard to come up
+      with additional visualizations for this data. Finally, the most difficult
+      challenge is the main visualization, and making sure it is interactive and
+      presentable and professional is the biggest challenge.
+    </p>
+  </body>
+</html>
