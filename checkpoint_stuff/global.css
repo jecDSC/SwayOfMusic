@@ -56,3 +56,15 @@ img {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+#songSelector {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+#audioPlayer {
+  display: none; /* This line hides the audio player */
+}
