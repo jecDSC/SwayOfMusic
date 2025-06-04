@@ -16,5 +16,5 @@ svg#main {
 }
 
 #person {
-  transition: 100ms;
+  transition-duration: 1000ms;
 }

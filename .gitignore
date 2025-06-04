@@ -2,8 +2,7 @@
 *.ipynb
 
 # Folders
-datanew
-dataold
+data
 
 # Files
 proposal.md

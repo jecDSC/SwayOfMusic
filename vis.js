@@ -1,72 +1,70 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm";
 
-const width = 1000;
+const width = 600;
 const height = 600;
-const xScale = d3.scaleLinear().domain([-50, 50]).range([0, width]);
-const yScale = d3.scaleLinear().domain([-50, 50]).range([0, height]);
+const margin = 40;
+const xScale = d3
+  .scaleLinear()
+  .domain([-20, 20])
+  .range([margin, width - margin]);
+const yScale = d3
+  .scaleLinear()
+  .domain([-20, 20])
+  .range([height - margin, margin]);
 
 async function renderViewbox() {
-  // Create SVG
   const svg = d3
     .select("#vis")
     .append("svg")
-    .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("id", "main")
-    .style("overflow", "visible");
+    .attr("width", width)
+    .attr("height", height);
 
-  const margin = { top: 30, right: 30, bottom: 30, left: 30 };
-  const usableArea = {
-    top: margin.top,
-    right: width - margin.right,
-    bottom: height - margin.bottom,
-    left: margin.left,
-    width: width - margin.left - margin.right,
-    height: height - margin.top - margin.bottom,
-  };
-
-  xScale.range([usableArea.left, usableArea.right]);
-  yScale.range([usableArea.bottom, usableArea.top]);
-
-  //   const gridlinesX = svg
-  //     .append("g")
-  //     .attr("class", "gridlines")
-  //     .attr("transform", `translate(${usableArea.left}, 0)`);
-  //   gridlinesX.call(
-  //     d3.axisTop(xScale).tickFormat("").tickSize(-usableArea.height)
-  //   );
-  const gridlinesY = svg
+  // Draw gridlines
+  svg
     .append("g")
-    .attr("class", "gridlines")
-    .attr("transform", `translate(0, ${usableArea.top})`);
-  gridlinesY.call(
-    d3.axisLeft(yScale).tickFormat("").tickSize(-usableArea.width)
-  );
-
-  // Set axes
-  const xAxis = d3.axisTop(xScale);
-  const yAxis = d3.axisRight(yScale);
+    .attr("class", "grid")
+    .selectAll("line.horizontal")
+    .data(d3.range(-20, 21))
+    .enter()
+    .append("line")
+    .attr("x1", xScale(-20))
+    .attr("x2", xScale(20))
+    .attr("y1", (d) => yScale(d))
+    .attr("y2", (d) => yScale(d))
+    .attr("stroke", "#eee");
 
   svg
     .append("g")
-    .attr("transform", `translate(-30, ${usableArea.bottom})`)
-    .call(xAxis);
+    .attr("class", "grid")
+    .selectAll("line.vertical")
+    .data(d3.range(-20, 21))
+    .enter()
+    .append("line")
+    .attr("y1", yScale(-20))
+    .attr("y2", yScale(20))
+    .attr("x1", (d) => xScale(d))
+    .attr("x2", (d) => xScale(d))
+    .attr("stroke", "#eee");
+
+  // Draw axes
+  svg
+    .append("g")
+    .attr("transform", `translate(0,${yScale(0)})`)
+    .call(d3.axisBottom(xScale).ticks(10));
 
   svg
     .append("g")
-    .attr("transform", "translate(" + xScale.range()[1] / 2 + ", 0)")
-    .call(yAxis);
+    .attr("transform", `translate(${xScale(0)},0)`)
+    .call(d3.axisLeft(yScale).ticks(10));
 
   svg
-    .append("image")
+    .append("text")
+    .text("🧍")
     .attr("id", "person")
-    .attr("href", "assets/human.png")
-    .attr("alt", "person image")
-    .attr("height", "200")
-    .attr("width", "200");
-
-  const figure = document.getElementById("person");
-  figure.setAttribute("x", xScale(0) - 114);
-  figure.setAttribute("y", yScale(0) - 100);
+    .attr("x", xScale(0) - 34)
+    .attr("y", yScale(0) + 20)
+    .attr("font-size", "50px")
+    .attr("fill", "black");
 }
 
 async function loadData(path) {
@@ -82,6 +80,7 @@ let selectEye = document.querySelector("#Eyes");
 let changeSet = document.querySelector("#Change");
 
 let dataurl;
+let running = false;
 
 selectSub.addEventListener("input", function (event) {
   console.log("subject selected:", event.target.value);
@@ -98,32 +97,32 @@ selectEye.addEventListener("input", function (event) {
 changeSet.addEventListener("click", function () {
   if (selectEye.value == "true") {
     if (selectMus.value == "normal") {
-      dataurl = "datatest/ECR.csv";
+      dataurl = `data/${selectSub.value}/ECR.csv`;
     } else if (selectMus.value == "loud") {
-      dataurl = "datatest/ECL1.csv";
+      dataurl = `data/${selectSub.value}/ECL1.csv`;
     } else if (selectMus.value == "louder") {
-      dataurl = "datatest/ECL2.csv";
+      dataurl = `data/${selectSub.value}/ECL2.csv`;
     } else if (selectMus.value == "off") {
-      dataurl = "datatest/ECLN.csv";
+      dataurl = `data/${selectSub.value}/ECLN.csv`;
     }
   } else if (selectEnv.value == "on") {
     if (selectMus.value == "loud") {
-      dataurl = "datatest/WL1.csv";
+      dataurl = `data/${selectSub.value}/WL1.csv`;
     } else if (selectMus.value == "loud") {
-      dataurl = "datatest/WL2.csv";
+      dataurl = `data/${selectSub.value}/WL2.csv`;
     } else if (selectMus.value == "off") {
-      dataurl = "datatest/WN.csv";
+      dataurl = `data/${selectSub.value}/WN.csv`;
     } else if (selectMus.value == "normal") {
-      dataurl = "datatest/WR.csv";
+      dataurl = `data/${selectSub.value}/WN.csv`;
     }
   } else if (selectMus.value == "loud") {
-    dataurl = "datatest/WOL1.csv";
+    dataurl = `data/${selectSub.value}/WOL1.csv`;
   } else if (selectMus.value == "louder") {
-    dataurl = "datatest/WOL2.csv";
+    dataurl = `data/${selectSub.value}/WOL2.csv`;
   } else if (selectMus.value == "off") {
-    dataurl = "datatest/WON.csv";
+    dataurl = `data/${selectSub.value}/WON.csv`;
   } else if (selectMus.value == "normal") {
-    dataurl = "datatest/WOR.csv";
+    dataurl = `data/${selectSub.value}/WOR.csv`;
   }
   console.log(
     `Params: Eyes Open: ${selectEye.value}; Music: ${selectMus.value}; Environment Moving: ${selectEnv.value}`
@@ -133,21 +132,23 @@ changeSet.addEventListener("click", function () {
 });
 
 async function moveit(subject) {
+  running = false;
   let data = await loadData(subject);
   let id = null;
   const elem = document.getElementById("person");
-  elem.setAttribute("x", xScale(0) - 114);
-  elem.setAttribute("y", yScale(0) - 100);
+  elem.setAttribute("x", xScale(0) - 34);
+  elem.setAttribute("y", yScale(0) + 20);
   let pos = 0;
   clearInterval(id);
-  id = setInterval(frame, 10);
+  id = setInterval(frame, 100);
   function frame() {
+    running = true;
     if (pos == 599) {
       clearInterval(id);
     } else {
       pos++;
-      elem.setAttribute("x", xScale(data[pos].My) - 114);
-      elem.setAttribute("y", yScale(data[pos].Mx) - 100);
+      elem.setAttribute("x", xScale(data[pos].My) - 34);
+      elem.setAttribute("y", yScale(data[pos].Mx) + 20);
       console.log("running");
     }
   }
