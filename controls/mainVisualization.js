@@ -77,7 +77,7 @@ async function renderViewbox() {
   svg
     .append("image")
     .attr("id", "person")
-    .attr("href", "../assets/human.png")
+    .attr("href", "https://jecdsc.github.io/TheSwayOfMusic/assets/human.png")
     .attr("alt", "person icon")
     .attr("x", xScale(0) - 50)
     .attr("y", yScale(0) - 50)
@@ -87,7 +87,7 @@ async function renderViewbox() {
   svg
     .append("image")
     .attr("id", "exp-bg")
-    .attr("href", "../assets/background.png")
+    .attr("href", "https://jecdsc.github.io/TheSwayOfMusic/assets/background.png")
     .attr("alt", "background")
     .attr("x", xScale(-30) - 190)
     .attr("y", yScale(30));
