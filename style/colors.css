@@ -1,0 +1,95 @@
+:root {
+  /* Gray Color Palette */
+  --gray-100: #f8f9fa; /* Very light gray (almost white) */
+  --gray-200: #e9ecef; /* Light gray */
+  --gray-300: #dee2e6; /* Light-medium gray */
+  --gray-400: #ced4da; /* Medium gray */
+  --gray-500: #adb5bd; /* Medium-dark gray */
+  --gray-600: #6c757d; /* Dark gray */
+  --gray-700: #495057; /* Darker gray */
+  --gray-800: #343a40; /* Very dark gray */
+  --gray-900: #212529; /* Almost black */
+
+  /* Blue Color Palette (for primary actions, links) */
+  --blue-100: #e7f5ff;
+  --blue-200: #d0ebff;
+  --blue-300: #a5d8ff;
+  --blue-400: #74c0fc;
+  --blue-500: #4dabf7;
+  --blue-600: #339af0;
+  --blue-700: #228be6;
+  --blue-800: #1c7ed6;
+  --blue-900: #1971c2;
+
+  /* Green Color Palette (for success, confirmation) */
+  --green-100: #e6fcf5;
+  --green-200: #c3fae8;
+  --green-300: #96f2d7;
+  --green-400: #69dbbb;
+  --green-500: #40c097;
+  --green-600: #37b27a;
+  --green-700: #2f9e69;
+  --green-800: #2b8a5b;
+  --green-900: #257850;
+
+  /* Yellow Color Palette (for warnings, attention) */
+  --yellow-100: #fff9db;
+  --yellow-200: #fff3bf;
+  --yellow-300: #ffec99;
+  --yellow-400: #ffe066;
+  --yellow-500: #ffd43b;
+  --yellow-600: #fcc419;
+  --yellow-700: #f5b102;
+  --yellow-800: #f08c00;
+  --yellow-900: #e8590c;
+
+  /* Red Color Palette (for errors, danger) */
+  --red-100: #fff5f5;
+  --red-200: #ffe3e3;
+  --red-300: #ffc9c9;
+  --red-400: #ffa8a8;
+  --red-500: #ff8787;
+  --red-600: #fa5252;
+  --red-700: #f03e3e;
+  --red-800: #e03131;
+  --red-900: #c92a2a;
+
+  /* --- Functional Colors --- */
+
+  /* Text Colors */
+  --text-color-light: var(--gray-100);
+  --text-color-medium: var(--gray-700);
+  --text-color-dark: var(--gray-900);
+  --text-color-link: var(--blue-700);
+
+  /* Border Colors */
+  --border-color: var(--gray-300);
+  --border-color-strong: var(--gray-400);
+
+  /* Background Colors */
+  --background-light: var(--gray-100);
+  --background-medium: var(--gray-200);
+  --background-medium-dark: var(--gray-300);
+  --background-dark: var(--gray-800);
+
+  /* Action Colors (Examples) */
+  --primary-color: var(--blue-600);
+  --primary-color-hover: var(--blue-700);
+  --secondary-color: var(--gray-600);
+  --secondary-color-hover: var(--gray-700);
+
+  /* Alert Colors */
+  --success-background: var(--green-100);
+  --success-text: var(--green-800);
+  --success-border: var(--green-300);
+
+  --warning-background: var(--yellow-100);
+  --warning-text: var(--yellow-800);
+  --warning-border: var(--yellow-300);
+
+  --error-background: var(--red-100);
+  --error-text: var(--red-800);
+  --error-border: var(--red-300);
+
+  --default-font: var(sans-serif);
+}

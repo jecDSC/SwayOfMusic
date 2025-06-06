@@ -1,0 +1,81 @@
+.music-player {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 250px;
+  padding: 15px;
+  padding-left: 45px; /* Space for the toggle button */
+  background-color: var(--background-medium-dark);
+  border: 1px solid var(--player-border-color);
+  border-radius: 8px 0 0 8px; /* Keep consistent with toggle button if it tucks flush */
+  box-shadow: -2px 2px 10px var(--player-shadow-color);
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.music-player.tucked {
+  /* Adjust based on padding-left and toggle button width if needed for perfect tuck */
+  transform: translateX(
+    calc(100% - 30px + 5px)
+  ); /* Width of player - padding-left + border width of toggle or visual overlap */
+  /* Original: transform: translateX(calc(100% - 5px - 15px)); Check this logic */
+}
+
+.toggle-player-btn {
+  position: absolute;
+  left: 5px; /* Positioned within the padding-left area of .music-player */
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 5px;
+  background-color: var(--player-toggle-btn-bg);
+  border: 1px solid var(--player-toggle-btn-border);
+  border-right: none; /* Important for the tuck-in appearance */
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1; /* Ensures text aligns well in the button */
+  z-index: 1001; /* Above the music player main body if overlapping */
+}
+
+.music-player h2 {
+  font-size: 1.1em;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--player-header-text-color);
+}
+
+.music-player select#songSelector {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid var(--player-select-border-color);
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Good practice for width and padding */
+}
+
+/* This rule targets all direct div children of .music-player */
+/* It might be too general if you add more divs later with different layout needs */
+.music-player > div {
+  /* Made more specific with direct child combinator > */
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.music-player label[for="volumeSlider"] {
+  font-size: 0.9em;
+  margin-right: 8px;
+  color: var(--player-label-text-color);
+}
+
+.music-player input#volumeSlider {
+  flex-grow: 1; /* Allows slider to take available space */
+  width: auto; /* Overrides default width if any, to work with flex-grow */
+}
+
+.music-player audio#audioPlayer {
+  width: 100%;
+  margin-top: 5px;
+  display: none; /* Assuming JS controls its visibility */
+}

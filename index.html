@@ -4,84 +4,361 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Final Project DSC106</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="global.css" />
-    <script src="vis.js" type="module"></script>
+
+    <link rel="stylesheet" href="style/colors.css" />
+    <link rel="stylesheet" href="style/mainVisualization.css" />
+    <link rel="stylesheet" href="style/musicplayer.css" />
+    <link rel="stylesheet" href="style/style.css" />
+    <link rel="stylesheet" href="style/secondaryVisualization.css" />
+    <link rel="stylesheet" href="style/interactiveVisualization.css" />
+
+    <script src="controls/mainVisualization.js" type="module"></script>
+    <script src="controls/musicplayer.js" type="module"></script>
+    <script src="controls/sections.js" type="module"></script>
+    <script src="controls/secondaryVisualization.js" type="module"></script>
+    <script src="controls/interactiveVisualization.js" type="module"></script>
+    <script src="controls/combinedVisualization.js" type="module"></script>
   </head>
+
   <body>
-    <h1>The Sway of music</h1>
-    <div id="selectors">
-      <label class="dropdown-labels">
-        Subject:
-        <select id="Subject" class="dropdown">
-          <option value="s3">S3</option>
-          <option value="s5">S5</option>
-          <option value="s10">S10</option>
-          <option value="s11">S11</option>
-          <option value="s15">S15</option>
-          <option value="s16">S16</option>
-          <option value="s17">S17</option>
-          <option value="s22">S22</option>
-          <option value="s23">S23</option>
-          <option value="s27">S27</option>
-        </select>
-      </label>
-
-      <label class="dropdown-labels">
-        Music Settings:
-        <select id="Music" class="dropdown">
-          <option value="normal">Normal</option>
-          <option value="loud">+0.1 Hz</option>
-          <option value="louder">+0.25 Hz</option>
-          <option value="off">Off</option>
-        </select>
-      </label>
-
-      <label class="dropdown-labels">
-        Environment Moving:
-        <select id="Env" class="dropdown">
-          <option value="off">Off</option>
-          <option value="on">On</option>
-        </select>
-      </label>
-
-      <label class="dropdown-labels">
-        Eyes Open:
-        <select id="Eyes" class="dropdown">
-          <option value="true">True</option>
-          <option value="false">False</option>
-        </select>
-      </label>
-
-      <button id="Change" type="button">Change Settings</button>
+    <div class="music-player" id="musicPlayer">
+      <button id="togglePlayerBtn" class="toggle-player-btn">&laquo;</button>
+      <h2>Select a Song:</h2>
+      <select id="songSelector">
+        <option value="">--Select a Song--</option>
+        <option value="music/01.I.AllegroVivace.mp3">Allegro Vivace</option>
+        <option value="music/02.Ii.AndanteCantabile.mp3">
+          Andante Cantabile
+        </option>
+        <option value="music/03.Iii.Menuettoallegretto.mp3">
+          Menuetto Allegretto
+        </option>
+        <option value="music/04.Iv.Finale-AllegroMolto.mp3">
+          Finale-Allegro Molto
+        </option>
+        <!-- <option value="music/Unlike Pluto - Everything Black.mp3">
+          SpaceGliding
+        </option> -->
+      </select>
+      <div>
+        <label for="volumeSlider">Volume:</label>
+        <input
+          type="range"
+          id="volumeSlider"
+          min="0"
+          max="1"
+          step="0.01"
+          value="1"
+        />
+      </div>
+      <audio id="audioPlayer" controls></audio>
+    </div>
+    <div class="intro-end">
+      <h1>The Sway of Music</h1>
+      <p class="writeup">
+        For this project, we utilized data collected from a study that analyzed
+        the impact of several controlled variables upon the swaying of an
+        individual’s body. Thirteen men and fifteen women, ranging from ages
+        eighteen to thirty-five, had their body sway monitored. The subjects
+        were monitored within every unique combination of the controlled
+        variables, the variables in question being eyes open or closed,
+        environment moving or still, and the volume of the music (off, on, 0.1
+        Hz shift, or 0.25 Hz shift). The overall goal of this project is to
+        identify potential factors that could contribute to a fall. Especially
+        in the diseased or elderly, a fall oftentimes can cause death or serious
+        injury. Being able to identify which factors promote instability could
+        reduce the possibility of falling within vulnerable populations.
+      </p>
+      <figure>
+        <img src="/assets/background.png" />
+        <figcaption>
+          This is a screenshot of the background used for the experiment!
+        </figcaption>
+      </figure>
+      <button class="toggle-btn" data-target="section1">
+        Click to advance!
+      </button>
     </div>
 
-    <div id="vis"></div>
+    <div id="section1" class="content-section">
+      <h1>How do you sway?</h1>
+      <!-- <p class="writeup">
+        Here, we will run through an activity that imitates the data collected
+        upon subjects with eyes closed, no music and no environment. Close your eyes and use the
+        arrow keys to record the directions in which you feel you are swaying.
+        When you are done, you will be able to compare your swaying patterns to
+        those of the subjects within the study.
+      </p> -->
+      <p class="writeup">
+        Let's start by seeing how you sway to the music! On the right hand side,
+        click on one of the songs to hear a movement of Mozart's Jupiter. These
+        movements were used in the actual experiment. Stand up, close your eyes,
+        and have one hand on the arrow keys. When you're ready, click "Start
+        Movement Recording", and using the arrow keys, track how you sway for
+        the next ten seconds.
+      </p>
+      <button id="startRecordingBtn" class="action-button">
+        Start Movement Recording
+      </button>
 
-    <p>
-      1. We have done a few things, mainly pertaining to cleaning the dataset.
-      For instance, the dataset we picked, which contained the swaying data from
-      participants under different conditions, was too big to push onto github,
-      so we removed many of the participants since the dataset was too large.
-      Additionally, the rows were all 1000th of a second, so we condensed the
-      data to also clean and shorten the data. For the visualizations, we have
-      decided to come up with one main visualization and a few supporting to
-      showcase the data and the overall message of our visualization. Our
-      visualization shows how a participant moves in their body in the VR
-      environment
-    </p>
-    <p>
-      The most challenging part of the project will be coming up with a cohesive
-      design for the website to showcase our narrative. We want to showcase the
-      sway of people to show the effect of music and environment on the sway of
-      participants, but currently we are not too sure on how to effectively
-      communicate this idea. Additionally, trying to come up with multiple
-      interactive visualizations to fully showcase the data of people swaying is
-      another challenge, since we are limited to showing the swaying data, which
-      only has data on people swaying and nothing more, so it is hard to come up
-      with additional visualizations for this data. Finally, the most difficult
-      challenge is the main visualization, and making sure it is interactive and
-      presentable and professional is the biggest challenge.
-    </p>
+      <div id="interactive-vis"></div>
+      <button class="toggle-btn" data-target="section2">
+        Click to advance!
+      </button>
+    </div>
+
+    <div id="section2" class="content-section">
+      <p class="writeup">
+        Here, you are able to compare your swaying pattern with those of the
+        subjects within the study. This can help you understand mentally about
+        how the response variable was recorded within this study. You can click
+        around the dropdown menu and compare yourself with the other subjects in
+        this experiment. Do you notice yourself swaying more or less than the
+        others?
+      </p>
+      <div id="combined-vis"></div>
+      <button class="toggle-btn" data-target="section3">
+        Click to advance!
+      </button>
+    </div>
+
+    <div id="section3" class="content-section">
+      <h1>Subject Movement Over Time</h1>
+      <p class="writeup">
+        This visualization plots the swaying of a sample of the participants
+        within the study. You are able to directly see the paths of any singular
+        participant and each of the conditions that they were subject to. This
+        is useful to identify not just the distribution of areas covered during
+        the swaying, but also to see the actual path and pattern that the person
+        swayed in. Feel free to adjust the variables and see all the
+        participants sway patterns. very right, we have a graph showcasing the
+        total distance from the origin each person was to quantify how much a
+        person was swaying.
+      </p>
+      <div id="center-col">
+        <div id="selectors">
+          <label class="dropdown-labels">
+            Subject:
+            <select id="Subject" class="dropdown">
+              <option value="S3">S3</option>
+              <option value="S5">S5</option>
+              <option value="S11">S11</option>
+              <option value="S15">S15</option>
+              <option value="S16">S16</option>
+              <option value="S17">S17</option>
+              <option value="S22">S22</option>
+              <option value="S23">S23</option>
+              <option value="S27">S27</option>
+            </select>
+          </label>
+
+          <label class="dropdown-labels">
+            Music Settings:
+            <select id="Music" class="dropdown">
+              <option value="normal">Normal</option>
+              <option value="loud">+0.1 Hz</option>
+              <option value="louder">+0.25 Hz</option>
+              <option value="off">Off</option>
+            </select>
+          </label>
+
+          <label class="dropdown-labels">
+            Environment Moving:
+            <select id="Env" class="dropdown">
+              <option value="off">Off</option>
+              <option value="on">On</option>
+            </select>
+          </label>
+
+          <label class="dropdown-labels">
+            Eyes Open:
+            <select id="Eyes" class="dropdown">
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </label>
+
+          <label for="showTime">Seconds of Data Shown (10-60):</label>
+          <input type="text" id="showTime" name="showTime" size="3" />
+
+          <button id="Change" type="button">Play!</button>
+        </div>
+        <div id="vis"></div>
+        <div id="vis1-sub"></div>
+      </div>
+      <button class="toggle-btn" data-target="section4">
+        Click to advance!
+      </button>
+    </div>
+
+    <div id="section4" class="content-section">
+      <div id="secondaryVisualization">
+        <h1>Comparing Different Conditions</h1>
+        <p class="writeup">
+          In this visualization, the goal is to be able to compare the effects
+          of specific controlled variables upon the swaying for a specific
+          subject. The idea of this visualization is to make it easier to see
+          the direct effects of the controlled variables upon the swaying of a
+          subject. This is crucial in being able to understand what variables
+          could potentially endanger vulnerable populations. When exploring a
+          subject and changing the parameters, we can mainly see that certain
+          factors like having your eyes open make you sway more, and also having
+          the environment moving also making you sway more. Generally, we
+          noticed that having music on often made subjects more volatile in
+          their sway, as did the environment moving. However, we found that
+          having eyes closed seemed to "center" subjects, making them keep their
+          head mostly close to the initial starting position.
+        </p>
+        <div id="center-col">
+          <div id="selectors">
+            <label class="dropdown-labels">
+              Subject:
+              <select id="subject-select" class="dropdown">
+                <option value="None">None</option>
+                <option value="S3">S3</option>
+                <option value="S5">S5</option>
+                <option value="S11">S11</option>
+                <option value="S15">S15</option>
+                <option value="S16">S16</option>
+                <option value="S17">S17</option>
+                <option value="S22">S22</option>
+                <option value="S23">S23</option>
+                <option value="S27">S27</option>
+              </select>
+            </label>
+
+            <fieldset class="trail-set">
+              <span style="color: blue">Trail 1: </span>
+              <label class="dropdown-labels">
+                Music:
+                <select id="trail0-music" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="Normal">Normal</option>
+                  <option value="+0.10 Hz">+0.10 Hz</option>
+                  <option value="+0.25 Hz">+0.25 Hz</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Environment:
+                <select id="trail0-env" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="On">On</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Eyes:
+                <select id="trail0-eyes" class="dropdown">
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="trail-set">
+              <span style="color: green">Trail 2: </span>
+              <label class="dropdown-labels">
+                Music:
+                <select id="trail1-music" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="Normal">Normal</option>
+                  <option value="+0.10 Hz">+0.10 Hz</option>
+                  <option value="+0.25 Hz">+0.25 Hz</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Environment:
+                <select id="trail1-env" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="On">On</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Eyes:
+                <select id="trail1-eyes" class="dropdown">
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="trail-set">
+              <span style="color: red">Trail 3: </span>
+              <label class="dropdown-labels">
+                Music:
+                <select id="trail2-music" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="Normal">Normal</option>
+                  <option value="+0.10 Hz">+0.10 Hz</option>
+                  <option value="+0.25 Hz">+0.25 Hz</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Environment:
+                <select id="trail2-env" class="dropdown">
+                  <option value="Off">Off</option>
+                  <option value="On">On</option>
+                </select>
+              </label>
+              <label class="dropdown-labels">
+                Eyes:
+                <select id="trail2-eyes" class="dropdown">
+                  <option value="Open">Open</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </label>
+            </fieldset>
+          </div>
+          <svg id="head-sway-svg" width="600" height="600"></svg>
+        </div>
+      </div>
+      <button class="toggle-btn" data-target="section5">
+        Click to advance!
+      </button>
+    </div>
+
+    <div id="section5" class="content-section">
+      <h1>Conclusion</h1>
+      <p class="writeup">
+        Overall, we found that factors such as music and a moving environment
+        seem to increase volatility in sway, while closing eyes seemed to reduce
+        volatility. The study also found similar results as well, in which they
+        found that playing music with a 0.1 Hz increase did overall seem to
+        increase sway, but also partially attributed to this being due to the
+        moving environment. Ultimately, the study concluded that further
+        research should be conducted regarding interactions between visual and
+        auditory input, and we agree with that. While many subjects displayed
+        similar patterns in the effects of the variables, it was not consistent.
+        Some subjects showed little to no changes. More stimulus and
+        combinations of stimuli needed to be tested in order to better
+        understand the relationship.
+      </p>
+    </div>
+
+    <div class="intro-end">
+      <p>Created by Elvin Chen, Jeremy Cho and Vincent Cho</p>
+      <p>
+        <a
+          href="https://physionet.org/content/body-sway-music-vr/1.0.0/"
+          class="button"
+          target="_blank"
+        >
+          <button class="link-button">Physionet Dataset</button>
+        </a>
+        <a
+          href="https://github.com/jecDSC/SwayOfTheWorld"
+          class="button"
+          target="_blank"
+        >
+          <button class="link-button">Github Repo</button>
+        </a>
+        <a
+          href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8478188/"
+          class="button"
+          target="_blank"
+        >
+          <button class="link-button">PubMed Central Article</button></a
+        >
+      </p>
+    </div>
   </body>
 </html>

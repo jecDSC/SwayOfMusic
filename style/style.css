@@ -1,0 +1,100 @@
+body {
+  font-family: var(--default-font);
+  margin: 0;
+  background-color: var(--background-light); /* Example usage */
+  color: var(--text-color-medium); /* Example usage */
+  font-size: 1em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.intro-end {
+  margin-top: 20px;
+  padding: 15px;
+  /* border: 1px solid var(--border-color); Example usage */
+  background-color: var(--background-light); /* Example usage */
+  text-align: center;
+}
+
+.content-section {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--border-color); /* Example usage */
+  background-color: var(--background-light); /* Example usage */
+  text-align: center;
+}
+
+.link-button {
+  width: 200px;
+  padding: 10px 15px;
+  margin: 20px auto;
+  cursor: pointer;
+  background-color: var(--secondary-color); /* Example usage, was #007bff */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.link-button:hover {
+  background-color: var(
+    --secondary-color-hover
+  ); /* Example usage, was #0056b3 */
+}
+
+.toggle-btn {
+  display: block;
+  width: 200px;
+  padding: 10px 15px;
+  margin: 20px auto;
+  cursor: pointer;
+  background-color: var(--secondary-color); /* Example usage, was #007bff */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.toggle-btn:hover {
+  background-color: var(
+    --secondary-color-hover
+  ); /* Example usage, was #0056b3 */
+}
+
+#center-col {
+  display: flex;
+  justify-content: center;
+}
+
+#selectors {
+  display: flex;
+  flex-direction: column;
+}
+
+#Change {
+  margin-top: 20px;
+}
+
+.writeup {
+  padding-right: 200px;
+  padding-left: 200px;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  /* Equivalent to 28px */
+  font-size: 1.75rem;
+}
+
+p {
+  /* Equivalent to 18px for better readability */
+  font-size: 1.125rem;
+}

@@ -10,11 +10,13 @@ label.dropdown-labels {
   opacity: 20%;
 }
 
-svg#main {
-  width: 200;
-  height: 200;
+svg#main-vis {
+  padding-left: 10px;
 }
 
-#person {
-  transition-duration: 1000ms;
+#exp-bg {
+  opacity: 25%;
+  width: 157%;
+  transform-origin: center;
+  scale: 120%;
 }
