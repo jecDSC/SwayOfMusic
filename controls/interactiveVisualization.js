@@ -113,7 +113,7 @@ async function renderViewbox() {
   personImage = svg
     .append("image")
     .attr("id", "interactive-person")
-    .attr("href", "../assets/human.png")
+    .attr("href", "https://jecdsc.github.io/TheSwayOfMusic/assets/human.png")
     .attr("alt", "person icon")
     .attr("width", personWidth * 3)
     .attr("height", personHeight * 3)
